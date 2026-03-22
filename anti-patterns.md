@@ -10,7 +10,7 @@ The agent doesn't think "I'm cutting corners." It thinks "this is efficient." Na
 
 ### The Spot Check
 
-Running 5 of 50 checklist items and declaring the check complete. The items you skip are the ones most likely to have issues: you subconsciously skip the ones you're least confident about.
+Running 5 of 50 checklist items and declaring the check complete. The items you skip are the ones most likely to have issues: the agent avoids the items it's least confident about.
 
 **Rule:** [never-give-up-checklist](rules/never-give-up-checklist.md)
 
