@@ -48,7 +48,7 @@ Each rule is 200-400 words. Total cost: ~1,500 tokens. For behavioral governance
 There's a natural temptation to merge these into a single "quality standards" document. The evidence argues against it:
 
 - Named anti-patterns lose their identity in a list. "The Trailing Off" as the title of its own rule is a mandate. As bullet #3 under "Quality Checks" it's a suggestion.
-- Standalone rules are individually testable. You can evaluate whether `never-give-up-planning` is still relevant without reading the other five. (More on this later.)
+- Standalone rules are individually testable. You can evaluate whether `never-give-up-planning` is still relevant without reading the other five.
 - The agent treats each file as a separate governance constraint. A 200-word focused rule has more behavioral impact than a 2,000-word comprehensive guide.
 
 ---
@@ -116,4 +116,4 @@ This framework builds on and extends ideas from:
 
 ---
 
-*Context engineering is not prompt engineering. Prompt engineering optimizes a single interaction. Context engineering designs the system around every interaction. The prompt is one message. The context is everything else.*
+*The same patterns that cause humans to cut corners in organizations cause AI agents to cut corners in your IDE. The interventions are the same too: specific, named, and rooted in evidence, not vibes.*
