@@ -1,4 +1,4 @@
-# Context Engineering
+# Behavioral Context Engineering
 
 **Everyone engineers what the agent produces. Almost nobody engineers how it operates.**
 
