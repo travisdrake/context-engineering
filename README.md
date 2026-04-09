@@ -18,7 +18,7 @@ You can give an agent perfect information and it will still cut corners, skip st
 
 AI agents fail in predictable, nameable ways. The agent doesn't think "I'm cutting corners." It thinks "this is efficient." Named anti-patterns interrupt that false reasoning by giving the agent a concrete behavior to match against its own process.
 
-**[The full anti-pattern catalog](anti-patterns.md)** documents 11 named failure modes, each traced to a specific incident. Here are a few:
+**[The full anti-pattern catalog](anti-patterns.md)** documents 15 named failure modes, each traced to a specific incident. Here are a few:
 
 **The Trailing Off.** Items 1-5 get detailed implementations with thorough testing. Items 6-7 get shorter treatments. Items 8-9 get a sentence each or are quietly deferred to "follow-up." The quality gradient is the giveaway.
 
@@ -53,6 +53,28 @@ There's a natural temptation to merge these into a single "quality standards" do
 
 ---
 
+## When Rules Aren't Enough
+
+The first 11 anti-patterns in the catalog are behavioral failures: the agent cuts corners, skips steps, trusts its own output. Behavioral rules fix these because the model has no strong competing prior.
+
+The last 4 anti-patterns are different. They happen when rules fight the model's training distribution: the statistical weight of patterns the model learned during pre-training. You can write "don't use card layouts" and the agent will read it, acknowledge it, and generate cards anyway.
+
+**[Failure-Mode Engineering](pillars/failure-mode-engineering.md)** explains where this boundary is and what to do instead of writing more rules.
+
+## Examples
+
+Working templates for the structural interventions that work when rules don't:
+
+| Example | What It Does |
+|---|---|
+| [Pre-Commitment Template](examples/pre-commitment-template.md) | Agent states its approach before generating, changing the completion trajectory |
+| [Independent Grading Setup](examples/independent-grading-setup.md) | Separate readonly agent grades work, preventing self-confirming scores |
+| [Bento Layout Reference](examples/bento-layout.html) | A non-card HTML layout to hand to agents instead of describing what you want |
+
+These aren't rules the agent reads. They're process changes that alter the conditions under which generation happens.
+
+---
+
 ## Quick Start
 
 Copy the six rules from [`rules/`](rules/) into your agent's configuration directory. See **[setup.md](setup.md)** for tool-specific instructions (Cursor, Claude Code, Windsurf, and others). Total cost: ~1,500 tokens.
@@ -79,6 +101,8 @@ Created after [the specific incident that created this rule].
 
 A 200-word behavioral rule costs ~150 tokens and prevents hours of wasted work.
 
+For situations where rules aren't enough, see the [examples](examples/) directory.
+
 ---
 
 ## Principles
@@ -103,10 +127,10 @@ This framework comes from I/O psychology, where the core discipline is understan
 
 This framework builds on and extends ideas from:
 
-- **Andrej Karpathy** — Coined "context engineering" (June 2025)
-- **Rachel Thomas** (fast.ai) — "Dark flow" concept
-- **Simon Willison** — "Slop" concept; the Lethal Trifecta security model
-- **Boris Cherny** (Anthropic) — "Once the plan is good, the code is good"
+- **Andrej Karpathy**: Coined "context engineering" (June 2025)
+- **Rachel Thomas** (fast.ai): "Dark flow" concept
+- **Simon Willison**: "Slop" concept; the Lethal Trifecta security model
+- **Boris Cherny** (Anthropic): "Once the plan is good, the code is good"
 
 ---
 

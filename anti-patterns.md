@@ -76,6 +76,46 @@ The agent reads the first 30 lines of a 400-line file, decides it understands th
 
 ---
 
+## Training Distribution Anti-Patterns
+
+Some failure modes can't be fixed with behavioral rules alone. These four anti-patterns emerge when instructions fight the model's training distribution: the statistical weight of patterns the model learned during pre-training. Rules operate at the instruction level; token prediction operates at the generation level. When the two conflict, the training distribution wins.
+
+### The Card Completion Trap
+
+The agent starts writing output in a common format (HTML, for example: `<div class="card">`) and the training distribution completes the pattern. Border-radius, padding, border, inner containers. The pattern wasn't chosen; it was *completed*. This happens whenever rules say "use novel patterns" but the model's token-level priors default to the most common structural pattern in training data. The agent didn't decide to use the default. It started generating and the training distribution finished the sentence.
+
+The intervention point is before the first token. If the agent pre-commits to a specific, named output pattern before generating, the starting tokens follow a different trajectory. Pre-commitment changes the completion path by changing the starting point.
+
+**Pillar:** [failure-mode-engineering](pillars/failure-mode-engineering.md)
+
+### The Self-Confirming Grade
+
+The agent that builds a deliverable grades it at exactly the minimum passing score. Every time. The builder has sunk-cost bias (it just spent significant effort building this), anchoring bias (previous passing grades make downgrading psychologically difficult), and a completion drive (grading lower means more work before "done").
+
+The result: grading tables where every score hits the minimum threshold, with one-word justifications. "OK." "Strong." "Passes." The scores are not evaluated. They're fabricated to clear the gate.
+
+**Pillar:** [failure-mode-engineering](pillars/failure-mode-engineering.md)
+
+### The Patch Rebuild
+
+The user says "rebuild from scratch." The agent uses its editing tool to change text inside the existing structure, adjust values, and rearrange the same elements. The fundamental layout survives every "rebuild."
+
+This happens because incremental editing preserves structure by design. The agent changes content within containers rather than deleting the containers. The skeleton survives, and with it, the same patterns the user wanted replaced.
+
+The test: after a "rebuild," diff the old and new output. If more than 30% of the structure is identical (same class names, same nesting, same element types), it wasn't a rebuild. It was a patch.
+
+**Pillar:** [failure-mode-engineering](pillars/failure-mode-engineering.md)
+
+### The Skill Citation Without Execution
+
+The most insidious anti-pattern. The agent reads an instruction set with documented patterns. It quotes the anti-patterns in its planning notes. It cites specific pattern names in its outline. Then it generates the anti-patterns anyway.
+
+The citation creates the *appearance* of compliance. The agent (and the user, if they're not checking the output) sees references to the instructions in the response and assumes they were applied. They weren't. The instructions were *read*. Reading and executing are different capabilities, and the gap between them is where this anti-pattern lives.
+
+**Pillar:** [failure-mode-engineering](pillars/failure-mode-engineering.md)
+
+---
+
 ## Why Naming Works
 
 Three reasons:

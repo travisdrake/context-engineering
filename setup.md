@@ -76,9 +76,9 @@ A faster test: ask the agent to read a long file and summarize it. If it reads t
 
 All six rules cost ~1,500 tokens total. There's no reason not to use all of them. But if you want to start small and see immediate impact:
 
-1. **never-give-up-planning** (The Trailing Off) — most common failure, most visible improvement
-2. **never-trust-syntax** (The Confident Declaration) — catches the "I've verified this works" lie
-3. **never-truncate** (The Courtesy Cut) — stops silent omissions in results
+1. **never-give-up-planning** (The Trailing Off): most common failure, most visible improvement
+2. **never-trust-syntax** (The Confident Declaration): catches the "I've verified this works" lie
+3. **never-truncate** (The Courtesy Cut): stops silent omissions in results
 
 Add the other three when you're ready. They're all standalone.
 
@@ -89,3 +89,16 @@ Add the other three when you're ready. They're all standalone.
 The [anti-patterns catalog](anti-patterns.md) is a reference document. You don't need to load it into your agent's context. Read it yourself to understand the failure modes, then use the rules (which are the actionable counterpart) in your agent configuration.
 
 If you want the agent to be aware of the anti-pattern names for self-diagnosis, you can include the catalog in your agent's context, but the rules alone are sufficient for behavioral governance.
+
+---
+
+## Pillar Docs
+
+Pillar docs (in `pillars/`) are reference material explaining the concepts behind the rules. They are not loaded into agent context. Read them yourself to understand when rules work and when you need structural interventions instead.
+
+## Examples
+
+Examples (in `examples/`) are working templates and reference files:
+
+- **Process templates** (`pre-commitment-template.md`, `independent-grading-setup.md`): Adapt these into your workflow. They describe process changes, not agent rules.
+- **Reference layouts** (`bento-layout.html`): Hand these directly to your agent when you need non-default output. Include the file content in your prompt or point the agent to the file path. Concrete examples produce better results than prose descriptions.
