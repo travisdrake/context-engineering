@@ -13,7 +13,7 @@ This is the single most important principle in the project. It's what separates 
 **New anti-patterns** that meet all of these criteria:
 - Observed in real agent workflows (not hypothetical)
 - Reproducible (you've seen it more than once)
-- Distinct from the existing 11 named patterns
+- Distinct from the existing 15 named patterns
 - Includes the specific incident that surfaced it
 
 **New rules** that meet all of these criteria:
